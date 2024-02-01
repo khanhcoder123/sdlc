@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hóa Đơn</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            display: block;
+        }
+
+        .invoice {
+            width: 80%;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .item-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .item-table th, .item-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .total-section {
+            margin-top: 20px;
+        }
+
+        .total-section span {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .total-section .total, .total-section .tax {
+            font-weight: bold;
+        }
+
+        .item-table tfoot th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover{
+            background-color: #ccc;
+        }
+        .tax:hover{
+            background-color: aqua;
+        }
+        .total:hover{
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice">
+        <div class="header">
+            <h2>HÓA ĐƠN</h2>
+            <p>Ngày: 01/02/2024</p>
+        </div>
+
+        <table class="item-table">
+            <thead>
+                <tr>
+                    <th colspan="2">Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Item 1 </td>
+                    <td>Item 1</td>
+                    <td>50</td>
+                    <td>100</td>
+                    
+                </tr>
+                <tr>
+                    <td>Item 2</td>
+                    <td>Item 1</td>
+                    <td>1</td>
+                    <td>30</td>
+                    
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th id="totalPrice" colspan="3">Total</th>
+                    <td id="totalAmount">130</td>
+                </tr>
+                <tr>
+                    <th class="tax" colspan="3">Tax</th>
+                    <td>13</td>
+                </tr>
+            </tfoot>
+        </table>
+            <button onclick="printInvoice()" class="print">Print</button>
+            <button onclick="increaseMoney()" class="print">Increase Money</button>
+        </div>
+    
+        <script>
+            function printInvoice() {
+                window.print();
+            }
+    
+            function increaseMoney() {
+                let totalPriceElement = document.getElementById('totalPrice');
+                let totalAmountElement = document.getElementById('totalAmount');
+    
+                // Get the current total amount
+                let currentTotal = parseFloat(totalAmountElement.innerText);
+    
+                // Prompt user for additional money
+                let additionalMoney = prompt('Nạp tiền vào cho tao');
+    
+                // Convert user input to a number
+                let additionalAmount = parseFloat(additionalMoney);
+    
+                // Update the total amount in the table
+                let newTotal = currentTotal + additionalAmount;
+                totalAmountElement.innerText = newTotal;
+    
+                // Update the total price in the footer
+                totalPriceElement.innerText = 'Total';
+            }
+        </script>
+</body>
+</html>
